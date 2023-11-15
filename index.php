@@ -4,7 +4,7 @@ require 'config/config.php';
 require 'vendor/autoload.php';
 
 
-use app\core\Core;
+require 'app/core/Core.php';
 
 $core = new Core;
 $core->run();

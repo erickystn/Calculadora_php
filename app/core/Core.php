@@ -1,6 +1,5 @@
 <?php
 
-namespace app\core;
 
 class Core
 {
@@ -57,7 +56,7 @@ class Core
 
     public function getMetodo()
     {
-        if ($this->metodo != null && method_exists(NAMESPACE_CONTROLLER . $this->controller, $this->metodo)) {
+        if (method_exists(NAMESPACE_CONTROLLER . $this->controller, $this->metodo)) {
             return $this->metodo;
         }
 
