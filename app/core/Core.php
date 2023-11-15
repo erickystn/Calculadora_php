@@ -1,66 +1,71 @@
 <?php
 
-class Core{
+namespace app\core;
+
+class Core
+{
     private $controller;
     private $metodo;
     private $parametros = array();
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->verificaUri();
     }
-    
-    public function run(){
-        $controllerCorrente = $this->getController();        
-        
-       $c = new $controllerCorrente;
-       call_user_func_array(array($c, $this->getMetodo()), $this->getParametros());      
-        
+
+    public function run()
+    {
+        $controllerCorrente = $this->getController();
+
+        $c = new $controllerCorrente;
+        call_user_func_array(array($c, $this->getMetodo()), $this->getParametros());
     }
-    public function verificaUri(){
-        $url =explode("index.php", $_SERVER["PHP_SELF"]);
+    public function verificaUri()
+    {
+        $url = explode("index.php", $_SERVER["PHP_SELF"]);
         $url = end($url);
-        
-        if($url!=""){
+
+        if ($url != "") {
             $url = explode('/', $url);
             array_shift($url);
-            
+
             //Pega o Controller
-            $this->controller = ucfirst($url[0]) ."Controller";
+            $this->controller = ucfirst($url[0]) . "Controller";
             array_shift($url);
-            
+
             //Pega o Método
-            if(isset($url[0])){
+            if (isset($url[0])) {
                 $this->metodo = $url[0];
                 array_shift($url);
             }
-            
+
             //Pegar os parâmetros
-            if(isset($url[0])){
-                $this->parametros= array_filter($url);
+            if (isset($url[0])) {
+                $this->parametros = array_filter($url);
             }
-        }else{
-            $this->controller = ucfirst(CONTROLLER_PADRAO) ."Controller";
-        }       
-       
-    }    
-    public function getController() {
-        if(class_exists(NAMESPACE_CONTROLLER .$this->controller)){
-            return NAMESPACE_CONTROLLER .$this->controller;
+        } else {
+            $this->controller = ucfirst(CONTROLLER_PADRAO) . "Controller";
         }
-        return NAMESPACE_CONTROLLER .ucfirst(CONTROLLER_PADRAO) ."Controller";
+    }
+    public function getController()
+    {
+        if (class_exists(NAMESPACE_CONTROLLER . $this->controller)) {
+            return NAMESPACE_CONTROLLER . $this->controller;
+        }
+        return NAMESPACE_CONTROLLER . ucfirst(CONTROLLER_PADRAO) . "Controller";
     }
 
-    public function getMetodo() {
-        if(method_exists(NAMESPACE_CONTROLLER .$this->controller, $this->metodo)){
-            return $this->metodo;            
+    public function getMetodo()
+    {
+        if ($this->metodo != null && method_exists(NAMESPACE_CONTROLLER . $this->controller, $this->metodo)) {
+            return $this->metodo;
         }
-        
-        return METODO_PADRAO;      
+
+        return METODO_PADRAO;
     }
 
-    public function getParametros() {
+    public function getParametros()
+    {
         return $this->parametros;
     }
-
-
 }

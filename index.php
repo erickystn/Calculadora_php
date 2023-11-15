@@ -1,7 +1,10 @@
 <?php
 require 'config/config.php';
-require 'app/core/Core.php';
+
 require 'vendor/autoload.php';
+
+
+use app\core\Core;
 
 $core = new Core;
 $core->run();
@@ -12,4 +15,3 @@ echo "<br>Método : " .$core->getMetodo();
 $parametros = $core->getParametros();
 foreach ($parametros as $param)
     echo "<br>Parâmetro : " .$param;*/
-
