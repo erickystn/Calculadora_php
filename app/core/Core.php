@@ -51,7 +51,7 @@ class Core{
     }
 
     public function getMetodo() {
-        if(method_exists(NAMESPACE_CONTROLLER .$this->controller, $this->metodo)){
+        if($this->metodo !=null && method_exists(NAMESPACE_CONTROLLER .$this->controller, $this->metodo)){
             return $this->metodo;            
         }
         
