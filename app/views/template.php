@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>mjailton - ligando você ao mundo do conhecimento</title>
+    <title>Ericky Santana - Dev WEB</title>
     <link rel="stylesheet" href="<?= URL_BASE ?>assets/css/style.css">
 </head>
 
 <body>
     <div class="conteudo">
         <div class="base-cabecalho">
-            <img src="<?= URL_BASE ?>assets/img/logo.png">
+            <img width="150px" src="<?= URL_BASE ?>assets/img/logo.png">
             <nav>
                 <a href="<?= URL_BASE ?>">Home</a>
                 <a href="<?= URL_BASE ?>home/somar">Somar</a>
@@ -24,7 +24,7 @@
 
 
         <div class="base-rodape">
-            <small>mjailton.com.br</small>
+            <small><a href="http://github.com/erickystn">github.com/erickystn</a></small>
         </div>
     </div>
 </body>
