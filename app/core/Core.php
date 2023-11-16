@@ -48,7 +48,7 @@ class Core
     }
     public function getController()
     {
-        if ($this->controller != null && class_exists(NAMESPACE_CONTROLLER . $this->controller)) {
+        if (class_exists(NAMESPACE_CONTROLLER . $this->controller)) {
             return NAMESPACE_CONTROLLER . $this->controller;
         }
         return NAMESPACE_CONTROLLER . ucfirst(CONTROLLER_PADRAO) . "Controller";
@@ -56,7 +56,7 @@ class Core
 
     public function getMetodo()
     {
-        if (method_exists(NAMESPACE_CONTROLLER . $this->controller, $this->metodo)) {
+        if ($this->controller !== null && method_exists(NAMESPACE_CONTROLLER . $this->controller, $this->metodo)) {
             return $this->metodo;
         }
 
